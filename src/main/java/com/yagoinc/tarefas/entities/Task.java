@@ -7,6 +7,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -21,14 +23,19 @@ public class Task implements Serializable {
 	private String title;
 	private String description;
 
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
+
 	public Task() {
 
 	}
 
-	public Task(Long id, String title, String description) {
+	public Task(Long id, String title, String description, User user) {
 		this.id = id;
 		this.title = title;
 		this.description = description;
+		this.user = user;
 	}
 
 	public Long getId() {
@@ -53,6 +60,14 @@ public class Task implements Serializable {
 
 	public void setTitle(String title) {
 		this.title = title;
+	}
+
+	public User getOwner() {
+		return user;
+	}
+
+	public void setOwner(User user) {
+		this.user = user;
 	}
 
 	@Override

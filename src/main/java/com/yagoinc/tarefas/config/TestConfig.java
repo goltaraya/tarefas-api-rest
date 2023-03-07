@@ -28,13 +28,14 @@ public class TestConfig implements CommandLineRunner {
 		User u2 = new User(null, "Juliana Reis", "juliana@gmail.com", "98983020092", "12345");
 		User u3 = new User(null, "Luiz Fellipe", "luiz@gmail.com", "98983099036", "12345");
 
-		Task t1 = new Task(null, "Configurar página inicial - Estágio",
-				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.");
-		Task t2 = new Task(null, "Listar plugins para remoção - Estágio",
-				"Vestibulum eget iaculis lorem, vitae tincidunt nunc.");
-		Task t3 = new Task(null, "Levar Brad para passear - Casa", "Fusce tristique consequat cursus.");
-
 		userRepository.saveAll(Arrays.asList(u1, u2, u3));
+
+		Task t1 = new Task(null, "Configurar página inicial - Estágio",
+				"Lorem ipsum dolor sit amet, consectetur adipiscing elit.", u1);
+		Task t2 = new Task(null, "Listar plugins para remoção - Estágio",
+				"Vestibulum eget iaculis lorem, vitae tincidunt nunc.", u1);
+		Task t3 = new Task(null, "Levar Brad para passear - Casa", "Fusce tristique consequat cursus.", u3);
+
 		taskRepository.saveAll(Arrays.asList(t1, t2, t3));
 	}
 
